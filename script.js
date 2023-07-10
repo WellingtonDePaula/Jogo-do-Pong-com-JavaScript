@@ -2,8 +2,8 @@ var alturaDaTela = window.innerHeight;
 var larguraDaTela = window.innerWidth;
 var xBolinha = 747.5;
 var yBolinha = 357.5;
-var velocidadeXBolinha = 5;
-var velocidadeYBolinha = 5;
+var velocidadeXBolinha = 6;
+var velocidadeYBolinha = 6;
 var diametroBolinha = 30;
 var raioDaBolinha = diametroBolinha/2;
 
