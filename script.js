@@ -1,9 +1,7 @@
-var alturaDaTela = window.screen.height
-var larguraDaTela = window.screen.width
+var alturaDaTela = window.innerHeight
+var larguraDaTela = window.innerWidth
 
 function setup() {
-    console.log(alturaDaTela)
-    console.log(larguraDaTela)
     createCanvas(larguraDaTela, alturaDaTela);
 }
 function draw () {
