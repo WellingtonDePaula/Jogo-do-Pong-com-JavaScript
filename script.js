@@ -25,7 +25,7 @@ function desenhaBolinha() {
     circle(xBolinha, yBolinha, diametroBolinha);
 }
 function desenhaRetangulo() {
-    rect(30, yRaquete, 26, yRaquete);
+    rect(30, yRaquete, 26, 250);
 }
 function movimentaBolinha() {
     xBolinha += velocidadeXBolinha;
