@@ -1,14 +1,17 @@
 var alturaDaTela = window.innerHeight;
 var larguraDaTela = window.innerWidth;
+//variaveis da bolinha:
 var xBolinha = 747.5;
 var yBolinha = 357.5;
 var velocidadeXBolinha = 6;
 var velocidadeYBolinha = 6;
 var diametroBolinha = 30;
 var raioDaBolinha = diametroBolinha/2;
+//variáveis da raquete:
 var yRaquete = 250;
-
-console.log(alturaDaTela)
+var xRaquete = 26;
+var comprimentoRaquete = 26;
+var alturaRaquete = 250;
 
 function setup() {
     createCanvas(larguraDaTela, alturaDaTela);
@@ -21,12 +24,13 @@ function draw() {
     desenhaRaquete();
     moveRaquete();
     colisaoBordaRaquete();
+    verificaColisaoRaquete();
 }
 function desenhaBolinha() {
     circle(xBolinha, yBolinha, diametroBolinha);
 }
 function desenhaRaquete() {
-    rect(30, yRaquete, 26, 250);
+    rect(xRaquete, yRaquete, comprimentoRaquete, alturaRaquete);
 }
 function movimentaBolinha() {
     xBolinha += velocidadeXBolinha;
@@ -35,21 +39,28 @@ function movimentaBolinha() {
 function colisaoBolinha() {
         if (xBolinha + raioDaBolinha > width || xBolinha - raioDaBolinha < 0) {
         velocidadeXBolinha *= -1;
-    }
+        }
         if (yBolinha + raioDaBolinha > height || yBolinha - raioDaBolinha < 0) {
     velocidadeYBolinha *= -1;
-    }
+        }
 }
 function moveRaquete() {
         if (keyIsDown(UP_ARROW)) {
         yRaquete -= 10;
-    }
+        }
         if (keyIsDown(DOWN_ARROW)) {
         yRaquete += 10;
-    }
+        }
 }
 function colisaoBordaRaquete() {
-        if (yRaquete < height) {
-            yRaquete - 1
+        if (yRaquete + alturaRaquete > height) {
+            yRaquete - 10;
+        }
+}
+function verificaColisaoRaquete() {
+    if (xBolinha - raioDaBolinha < xRaquete + comprimentoRaquete
+        && yBolinha - raioDaBolinha < yRaquete + alturaRaquete
+        && yBolinha + raioDaBolinha > yRaquete) {
+        velocidadeXBolinha *= -1;
         }
 }
