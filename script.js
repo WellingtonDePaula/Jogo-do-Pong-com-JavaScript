@@ -8,7 +8,7 @@ var diametroBolinha = 30;
 var raioDaBolinha = diametroBolinha/2;
 var yRaquete = 250;
 
-console.log(larguraDaTela)
+console.log(alturaDaTela)
 
 function setup() {
     createCanvas(larguraDaTela, alturaDaTela);
@@ -18,13 +18,14 @@ function draw() {
     desenhaBolinha();
     movimentaBolinha();
     colisaoBolinha();
-    desenhaRetangulo();
-    moveRetangulo();
+    desenhaRaquete();
+    moveRaquete();
+    colisaoBordaRaquete();
 }
 function desenhaBolinha() {
     circle(xBolinha, yBolinha, diametroBolinha);
 }
-function desenhaRetangulo() {
+function desenhaRaquete() {
     rect(30, yRaquete, 26, 250);
 }
 function movimentaBolinha() {
@@ -39,11 +40,16 @@ function colisaoBolinha() {
     velocidadeYBolinha *= -1;
     }
 }
-function moveRetangulo() {
-    if (keyIsDown(UP_ARROW)) {
+function moveRaquete() {
+        if (keyIsDown(UP_ARROW)) {
         yRaquete -= 10;
     }
-    if (keyIsDown(DOWN_ARROW)) {
+        if (keyIsDown(DOWN_ARROW)) {
         yRaquete += 10;
     }
+}
+function colisaoBordaRaquete() {
+        if (yRaquete < height) {
+            yRaquete - 1
+        }
 }
