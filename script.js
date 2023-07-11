@@ -6,6 +6,7 @@ var velocidadeXBolinha = 6;
 var velocidadeYBolinha = 6;
 var diametroBolinha = 30;
 var raioDaBolinha = diametroBolinha/2;
+var alturaRetangulo = 250;
 
 console.log(larguraDaTela)
 
@@ -17,9 +18,14 @@ function draw() {
     desenhaBolinha();
     movimentaBolinha();
     colisaoBolinha();
+    desenhaRetangulo();
+    moveRetangulo();
 }
 function desenhaBolinha() {
     circle(xBolinha, yBolinha, diametroBolinha);
+}
+function desenhaRetangulo() {
+    rect(30, alturaRetangulo, 26, alturaRetangulo);
 }
 function movimentaBolinha() {
     xBolinha += velocidadeXBolinha;
@@ -32,4 +38,9 @@ function colisaoBolinha() {
         if (yBolinha + raioDaBolinha > height || yBolinha - raioDaBolinha < 0) {
     velocidadeYBolinha *= -1;
     }
+}
+function moveRetangulo() {
+if (keyIsDown(UP_ARROW)) {
+    alturaRetangulo -= 5;
+  }
 }
