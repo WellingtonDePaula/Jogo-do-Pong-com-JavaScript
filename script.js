@@ -52,7 +52,6 @@ function moveRaquete() {
         yRaquete += 10;
         }
 }
-console.log(alturaDaTela)
 function colisaoBordaRaquete() {
         if (yRaquete <= 0) {
             yRaquete += 10;
