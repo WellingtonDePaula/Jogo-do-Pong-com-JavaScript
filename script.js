@@ -29,10 +29,7 @@ function draw() {
     desenhaRaquete(xRaquete, yRaquete);
     desenhaRaquete(xRaqueteOponete, yRaqueteOponete);
     moveRaquete();
-    colisaoBordaRaquete();
-    //colisaoBordaRaqueteOponete();
-    verificaColisaoRaquete(xRaquete, yRaquete);
-    verificaColisaoRaquete(-xRaqueteOponete, -yRaqueteOponete);
+    verificaColisaoRaquete();
     movimentaRaqueteOponente();
     verificaColisaoRaqueteOponente();
 }
@@ -61,27 +58,13 @@ function moveRaquete() {
     if (keyIsDown(DOWN_ARROW)) {
         yRaquete += 10;
         }
-}
-function colisaoBordaRaquete() {
-    if (yRaquete <= 0) {
-            yRaquete += 10;
-        }
-    if (yRaquete >= 460) {
-            yRaquete -= 10;
-        }
-    }
-function colisaoBordaRaqueteOponete() {
-    if (yRaqueteOponete <= 0) {
-            yRaqueteOponete += 10;
-        }
-    if (yRaqueteOponete >= 460) {
-            yRaqueteOponete -= 10;
-        }
+    //Impede que a raquete saia da tela
+    yRaquete = constrain(yRaquete, 10, 450);
 }
 function verificaColisaoRaquete(x, y) {
-    if (xBolinha - raioDaBolinha < x + comprimentoRaquete
-        && yBolinha - raioDaBolinha < y + alturaRaquete
-        && yBolinha + raioDaBolinha > y) {
+    if (xBolinha - raioDaBolinha < xRaquete + comprimentoRaquete
+        && yBolinha - raioDaBolinha < yRaquete + alturaRaquete
+        && yBolinha + raioDaBolinha > yRaquete) {
         velocidadeXBolinha *= -1;
         }
 }
@@ -95,11 +78,13 @@ function movimentaRaqueteOponente() {
     if (yRaqueteOponete + comprimentoRaquete >= 470) {
         yRaqueteOponete = 450;
     }
+    //Impede que a raquete do oponente saia da tela
+    yRaqueteOponete = constrain(yRaqueteOponete, 5, 460);
 }
 function verificaColisaoRaqueteOponente(x, y) {
-    if (xBolinha - raioDaBolinha > xRaqueteOponete + comprimentoRaquete
-        && yBolinha - raioDaBolinha > yRaqueteOponete + alturaRaquete
-        && yBolinha + raioDaBolinha < yRaqueteOponete) {
-        velocidadeXBolinha *= -1;
-        }
+    if (xBolinha - raioDaBolinha > xRaqueteOponete - comprimentoRaquete
+        && yBolinha - raioDaBolinha < yRaqueteOponete + alturaRaquete
+        && yBolinha + raioDaBolinha > yRaqueteOponete) {
+        velocidadeXBolinha *= -1
+    }
 }
