@@ -18,6 +18,10 @@ var xRaqueteOponete = larguraDaTela - 52;
 var yRaqueteOponete = 250;
 var velocidadeYOponente;
 
+//placar
+var meusPontos = 0;
+var pontosDoOponente = 0;
+
 function setup() {
     createCanvas(larguraDaTela, alturaDaTela);
 }
@@ -32,6 +36,8 @@ function draw() {
     verificaColisaoRaquete();
     movimentaRaqueteOponente();
     verificaColisaoRaqueteOponente();
+    incluiPlacar();
+    sistemaDePontuação();
 }
 function desenhaBolinha() {
     circle(xBolinha, yBolinha, diametroBolinha);
@@ -86,5 +92,18 @@ function verificaColisaoRaqueteOponente(x, y) {
         && yBolinha - raioDaBolinha < yRaqueteOponete + alturaRaquete
         && yBolinha + raioDaBolinha > yRaqueteOponete) {
         velocidadeXBolinha *= -1
+    }
+}
+function incluiPlacar() {
+    fill(255);
+    text(meusPontos, 697,5, 30);
+    text(pontosDoOponente, 797,5, 30)
+}
+function sistemaDePontuação() {
+    if(xBolinha + raioDaBolinha >= larguraDaTela) {
+        meusPontos += 1;
+    }
+    if(xBolinha + raioDaBolinha <= 25) {
+        pontosDoOponente += 1;
     }
 }
